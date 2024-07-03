@@ -8,7 +8,6 @@ import 'package:geomag/geomag.dart';
 Future<double> _getDeclination() async {
   final pos = await Geolocator.getLastKnownPosition() ??
       await Geolocator.getCurrentPosition();
-  if (pos == null) return null;
   final result = await GeoMag().calculate(
       pos.latitude, pos.longitude, pos.altitude * 3.28084); // m -> ft
   return result.dec;
@@ -22,13 +21,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  double _direction;
-  double _declination;
+  double? _direction;
+  double? _declination;
 
   @override
   void initState() {
     super.initState();
-    FlutterCompass.events.listen((CompassEvent event) {
+    FlutterCompass.events?.listen((CompassEvent event) {
       setState(() {
         _direction = event.heading;
       });
@@ -59,10 +58,10 @@ class _MyAppState extends State<MyApp> {
                   _declination == null
                       ? Container()
                       : Transform.rotate(
-                          angle: -1 * _declination * math.pi / 180,
+                          angle: -1 * _declination! * math.pi / 180,
                           child: Column(
                             children: [
-                              Text('True\nNorth\n(${_declination.round()}°)'),
+                              Text('True\nNorth\n(${_declination!.round()}°)'),
                               Container(
                                 color: Colors.red,
                                 width: 1,
