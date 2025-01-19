@@ -4,12 +4,12 @@ version: 0.2.1
 homepage: https://github.com/jifalops/geomag
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
-  intl: ^0.19.0
-  meta: ^1.12.0
+  intl: ^0.20.1
+  meta: ^1.16.0
 
 dev_dependencies:
-  pedantic: ^1.8.0+1
-  test: ^1.25.7
+  flutter_lints: ^5.0.0
+  test: ^1.25.14
